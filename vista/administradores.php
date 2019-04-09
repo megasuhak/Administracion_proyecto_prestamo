@@ -8,7 +8,7 @@ if (!isset($_SESSION['id_user'])) {
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Finaciera</title>
+	<title></title>
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/animate.css">
 	<link rel="stylesheet" href="./assets/css/toastr.css"/>
@@ -25,11 +25,11 @@ if (!isset($_SESSION['id_user'])) {
 		<div class="col-sm-12 col-md-9 col-lg-9 pt-5">
 			<div class="container">
 				
-				<h2>Usuarios</h2>
+				<h2>Administradores</h2>
 
 	          <div class="row">
 	            <div class="col-sm-12 col-md-4 col-lg-4">
-	                <a class="nav-link text-white btn btn-primary" data-toggle="modal" data-target="#exampleModal" href="#">Agregar usuario</a>
+	                <a class="nav-link text-white btn btn-primary" data-toggle="modal" data-target="#exampleModal" href="#">Agregar prestamo</a>
 	            </div>
 	            <div class="col-sm-12 col-md-4 col-lg-4"></div>
 	            <div class="col-sm-12 col-md-4 col-lg-4">
@@ -49,7 +49,7 @@ if (!isset($_SESSION['id_user'])) {
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Agregar usuario</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Agregar administrador</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

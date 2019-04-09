@@ -3,8 +3,9 @@
 	<a href="prestamos.php" class="btn btn-outline-success bg-success text-white btn-block shadow">Prestamos</a>
 	<a href="usuarios.php" class="btn btn-outline-success bg-success text-white btn-block shadow">Usuarios</a>
 	<?php if($_SESSION['role'] == 'admin') { ?>
-	<a href="administradores.php" class="btn btn-outline-success bg-success text-white btn-block shadow">Si eres administrador</a>
+	<a href="administradores.php" class="btn btn-outline-success bg-success text-white btn-block shadow">Administradores</a>
 	<?php } ?>
+	<a href="moras.php" class="btn btn-outline-success bg-success text-white btn-block shadow">Moras</a>
 	<a href="taza.php" class="btn btn-outline-success bg-success text-white btn-block shadow">Taza</a>
 	<a href="perfil.php" class="btn btn-outline-success bg-success text-white btn-block shadow">Perfil</a>
 	<a href="configuracion.php" class="btn btn-outline-success bg-success text-white btn-block shadow">Configuracion</a>
