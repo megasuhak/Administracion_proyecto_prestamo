@@ -1,76 +1,70 @@
--- phpMyAdmin SQL Dump
--- version 4.8.4
--- https://www.phpmyadmin.net/
---
--- Servidor: 127.0.0.1
--- Tiempo de generación: 16-02-2019 a las 01:45:09
--- Versión del servidor: 10.1.37-MariaDB
--- Versión de PHP: 7.3.1
+/*
+SQLyog Community Edition- MySQL GUI v8.05 
+MySQL - 5.5.5-10.1.38-MariaDB : Database - financiera
+*********************************************************************
+*/
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
+/*!40101 SET NAMES utf8 */;
 
+/*!40101 SET SQL_MODE=''*/;
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
---
--- Base de datos: `financiera`
---
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`financiera` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
--- --------------------------------------------------------
+USE `financiera`;
 
---
--- Estructura de tabla para la tabla `usuarios`
---
+/*Table structure for table `prestamo` */
 
-CREATE TABLE `usuarios` (
-  `idusuario` int(255) NOT NULL,
-  `apaterno` varchar(255) NOT NULL,
-  `amaterno` varchar(255) NOT NULL,
-  `nombre` varchar(255) NOT NULL,
-  `usuario` varchar(255) NOT NULL,
-  `clave` varchar(255) NOT NULL,
-  `tipo` int(1) NOT NULL,
-  `status` int(1) NOT NULL,
-  `fregistro` datetime NOT NULL,
-  `cedula` varchar(50) NOT NULL
+DROP TABLE IF EXISTS `prestamo`;
+
+CREATE TABLE `prestamo` (
+  `id_prestamo` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int(11) DEFAULT NULL,
+  `nombre` varchar(60) DEFAULT NULL,
+  `cedula_pasaporte` varchar(60) DEFAULT NULL,
+  `telefono` varchar(60) DEFAULT NULL,
+  `fecha_nacimiento` int(11) DEFAULT NULL,
+  `email` varchar(60) DEFAULT NULL,
+  `ciudad` varchar(60) DEFAULT NULL,
+  `provincia` varchar(60) DEFAULT NULL,
+  `calle` varchar(60) DEFAULT NULL,
+  `monto` int(11) DEFAULT NULL,
+  `tipo_garantia` enum('aval','hipoteca','embargo') DEFAULT NULL,
+  `tipo_prestamo` enum('no_garantia','garantia') DEFAULT NULL,
+  `comentario` text,
+  `estado` enum('pendiente','aprobado','rechasado') DEFAULT NULL,
+  `fecha` date DEFAULT NULL,
+  PRIMARY KEY (`id_prestamo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `usuarios`
---
+/*Data for the table `prestamo` */
 
-INSERT INTO `usuarios` (`idusuario`, `apaterno`, `amaterno`, `nombre`, `usuario`, `clave`, `tipo`, `status`, `fregistro`, `cedula`) VALUES
-(1, 'joseph', 'jeanty', 'marvyn', 'admin', '123456', 1, 1, '2017-01-18 16:02:42', '402-365214552-02'),
-(2, 'benitez', 'cristian', 'el flaco', 'user', '123456', 2, 1, '2019-02-13 22:34:37', '402-32125215-32'),
-(3, 'medrano', 'acevedo', 'candido', 'emple', '123456', 3, 1, '2019-02-13 22:35:27', '402-325525655-01');
+/*Table structure for table `usuarios` */
 
---
--- Índices para tablas volcadas
---
+DROP TABLE IF EXISTS `usuarios`;
 
---
--- Indices de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`idusuario`);
+CREATE TABLE `usuarios` (
+  `id_user` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(60) NOT NULL,
+  `apellido` varchar(60) DEFAULT NULL,
+  `fecha_nacimiento` date DEFAULT NULL,
+  `email` varchar(60) DEFAULT NULL,
+  `cedula` varchar(60) DEFAULT NULL,
+  `telefono` varchar(60) DEFAULT NULL,
+  `direccion` varchar(100) DEFAULT NULL,
+  `clave` varchar(60) NOT NULL,
+  `imagen` text,
+  `role` enum('admin','user') DEFAULT NULL,
+  `estado` enum('activo','inactivo') DEFAULT NULL,
+  `fecha` date DEFAULT NULL,
+  PRIMARY KEY (`id_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
---
--- AUTO_INCREMENT de las tablas volcadas
---
+/*Data for the table `usuarios` */
 
---
--- AUTO_INCREMENT de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `idusuario` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-COMMIT;
+insert  into `usuarios`(`id_user`,`nombre`,`apellido`,`fecha_nacimiento`,`email`,`cedula`,`telefono`,`direccion`,`clave`,`imagen`,`role`,`estado`,`fecha`) values (15,'asdfasd','asdfsd','2019-04-04','admin@gmail.com','40237252669','1234567890','asdfasdf','21232f297a57a5a743894a0e4a801fc3','default.png','user','inactivo','2019-04-09'),(16,'Robertico','chacon','2019-04-04','hola@gmail.com','089890809','870938290','itla','4d186321c1a7f0f354b297e8914ab240','default.png','user','inactivo','2019-04-09'),(17,'Robertico','chacon','2019-04-04','hola@gmail.com','089890809','870938290','itla','4d186321c1a7f0f354b297e8914ab240','default.png','admin','inactivo','2019-04-09'),(18,'alvaro','jaquez','2019-04-09','alvaro@gmail.com','40237252669','456789','aqui','98db6b79acb71383b5a83e0bbc1cadd4','default.png','admin','inactivo','2019-04-09');
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
