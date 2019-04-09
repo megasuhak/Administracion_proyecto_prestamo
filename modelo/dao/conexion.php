@@ -57,6 +57,7 @@ public $conn;
 
 	public function login($user, $pass){
 		$cx = self::getConexion();
+		$pass = md5($pass);
 		$sql = "SELECT * FROM usuarios WHERE email = '{$user}' AND clave = '{$pass}'";
 		$query = mysqli_query($cx, $sql);
 		$count = mysqli_num_rows($query);
@@ -65,13 +66,13 @@ public $conn;
 			$datos = mysqli_fetch_array($query);
 			session_start();
 			$_SESSION['id_user'] = $datos['id_user'];
-			$_SESSION['nombre'] = $datos['nombre'];
+			$_SESSION['nombre'] = $datos['nombre']." ".$datos['apellido'];
 			$_SESSION['email'] = $datos['email'];
 			$_SESSION['telefono'] = $datos['telefono'];
 			$_SESSION['role'] = $datos['role'];
 
 			// header("Location: dentro.php");
-			// echo "1";
+			echo "ok";
 			return true;
 		}else{
 			return false;

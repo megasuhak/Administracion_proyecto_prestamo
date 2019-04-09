@@ -18,7 +18,7 @@ if (!isset($_SESSION['id_user'])) {
 	
 <div class="justify-content-center pt-5">
 	<div class="row">
-		<div class="col-sm-12 col-md-3 col-lg-3 pt-5 pb-3 bg-dark">
+		<div class="col-sm-12 col-md-3 col-lg-3 pt-5 pb-3" style="background:#D5DBDB;">
 			<?php include('slider.php');?>
 		</div>
 		<div class="col-sm-12 col-md-8 col-lg-8 pt-5">

@@ -55,6 +55,7 @@
      <script src="assets/js/jquery.min.js"></script>
      <script src="assets/js/toastr.min.js"></script>
      <script src="assets/js/main.js"></script>
+     <script src="assets/js/sweetalert2.js"></script>
   </body>
 </html>
 
