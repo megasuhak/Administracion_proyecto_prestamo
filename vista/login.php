@@ -15,12 +15,23 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+
+
+    <?php
+      include_once 'ModulosHomePage/linkBootstrap.php';
+     ?>
+     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+     <script src="assets/js/jquery.kitemenu.js"></script>
+
+
+
   </head>
   <body background="assets/img/dinero.jpg">
 
+  <?php include_once 'ModulosHomePage/menuModulos.php';?>
 
 <div class="container mt-5 pt-5">
   <div class="row justify-content-center">
@@ -51,6 +62,12 @@
     </div>
   </div>
 </div>
+
+    <script>
+       $(".kite-menu").kiteMenu({
+          kiteSkin: "rainbow",
+          });
+    </script>
 
      <script src="assets/js/jquery.min.js"></script>
      <script src="assets/js/toastr.min.js"></script>

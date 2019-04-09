@@ -12,6 +12,7 @@
          <li> <a href="contacto.php">Contactos </a> </li>
          <li> <a href="#5">About </a> </li>
          <li> <a href="login.php">Login</a> </li>
+         <li> <a href="registro.php">Registro </a> </li>
       </ul>
    </div>
 </nav>
