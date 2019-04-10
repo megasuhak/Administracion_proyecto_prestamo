@@ -21,7 +21,6 @@ DROP TABLE IF EXISTS `prestamo`;
 
 CREATE TABLE `prestamo` (
   `id_prestamo` int(11) NOT NULL AUTO_INCREMENT,
-  `id_usuario` int(11) DEFAULT NULL,
   `nombre` varchar(60) DEFAULT NULL,
   `cedula_pasaporte` varchar(60) DEFAULT NULL,
   `telefono` varchar(60) DEFAULT NULL,
@@ -37,9 +36,11 @@ CREATE TABLE `prestamo` (
   `estado` enum('pendiente','aprobado','rechasado') DEFAULT NULL,
   `fecha` date DEFAULT NULL,
   PRIMARY KEY (`id_prestamo`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `prestamo` */
+
+insert  into `prestamo`(`id_prestamo`,`nombre`,`cedula_pasaporte`,`telefono`,`fecha_nacimiento`,`email`,`ciudad`,`provincia`,`calle`,`monto`,`tipo_garantia`,`tipo_prestamo`,`comentario`,`estado`,`fecha`) values (6,'alvaro jaquez','40237252669','456789',2019,'alvaro@gmail.com','asdfjaklsdf','waaaaa','asdfasd',8990,'embargo','garantia','holklk','pendiente','2019-04-10'),(7,'alvaro jaquez','40237252669','456789',2019,'alvaro@gmail.com','asdfasd','waaaaa','asdfasdf',800,'aval','garantia','ninguno','pendiente','2019-04-10');
 
 /*Table structure for table `usuarios` */
 
