@@ -1,5 +1,5 @@
 <?php
-include('../modelo/dao/conexion.php');
+include('../../modelo/dao/conexion.php');
 
 $nombre = $_POST['nombre'];
 $cedula_pasaporte = $_POST['cedula_pasaporte'];
@@ -10,13 +10,14 @@ $provincia = $_POST['provincia'];
 $ciudad = $_POST['ciudad'];
 $calle = $_POST['calle'];
 $monto = $_POST['monto'];
+$meses = $_POST['meses'];
 $comentario = $_POST['comentario'];
 $tipo_garantia = $_POST['tipo_garantia'];
 $tipo_prestamo = "garantia";
 $estado = "pendiente";
 $fecha = date('Y-m-d');
 
-$sql = "INSERT INTO prestamo(nombre,cedula_pasaporte,telefono,fecha_nacimiento,email,ciudad,provincia,calle,monto,tipo_garantia,tipo_prestamo,comentario,estado,fecha) VALUES('".$nombre."','".$cedula_pasaporte."','".$telefono."','".$fecha_nacimiento."','".$email."','".$ciudad."','".$provincia."','".$calle."','".$monto."','".$tipo_garantia."','".$tipo_prestamo."','".$comentario."','".$estado."','".$fecha."')";
+$sql = "INSERT INTO prestamo(nombre,cedula_pasaporte,telefono,fecha_nacimiento,email,ciudad,provincia,calle,monto,meses,tipo_garantia,tipo_prestamo,comentario,estado,fecha) VALUES('".$nombre."','".$cedula_pasaporte."','".$telefono."','".$fecha_nacimiento."','".$email."','".$ciudad."','".$provincia."','".$calle."','".$monto."','".$meses."','".$tipo_garantia."','".$tipo_prestamo."','".$comentario."','".$estado."','".$fecha."')";
 
 var_dump($_POST);
 

@@ -25,19 +25,31 @@ if (!isset($_SESSION['id_user'])) {
 		<div class="col-sm-12 col-md-9 col-lg-9 pt-5">
 			<div class="container">
 				
-				<h2>Prestamos</h2>
+              <?php if ($_SESSION['role'] == "admin") {?>
+              <h2>Prestamos</h2>
+             <?php }else if ($_SESSION['role'] == "user"){ ?>
+              <h2>Mis prestamos</h2>
+             <?php } ?>
 
 	          <div class="row">
 	            <div class="col-sm-12 col-md-4 col-lg-4">
-	                <a class="nav-link text-white btn btn-primary" data-toggle="modal" data-target="#prestamo" href="#">Agregar prestamo</a>
+
+             <?php if ($_SESSION['role'] == "admin") {?>
+                <a class="nav-link text-white btn btn-primary" data-toggle="modal" data-target="#prestamo" href="#">Agregar prestamo</a>
+             <?php }else if ($_SESSION['role'] == "user"){ ?>
+                <a class="nav-link text-white btn btn-primary" data-toggle="modal" data-target="#prestamo" href="#">Solicitar prestamo</a>
+             <?php } ?>
 	            </div>
 	            <div class="col-sm-12 col-md-4 col-lg-4"></div>
 	            <div class="col-sm-12 col-md-4 col-lg-4">
 	                <input class="form-control mr-sm-2" type="search" name="buscar" placeholder="Buscar" id="buscador_prestamos" aria-label="Search">
 	            </div>
 	          </div>
-
-	          <div id="datos_prestamos" style="overflow-X:scroll;" class="mb-5"></div>
+            <?php if ($_SESSION['role'] == "admin") {?>
+              <div id="datos_prestamos_administrador" style="overflow-X:scroll;" class="mb-5"></div>
+             <?php }else if ($_SESSION['role'] == "user"){ ?>
+              <div id="datos_prestamos" style="overflow-X:scroll;" class="mb-5"></div>
+             <?php } ?>
 
 			</div>
 		</div>
@@ -55,36 +67,58 @@ if (!isset($_SESSION['id_user'])) {
         </button>
       </div>
       <div class="modal-body">
-                     <form class="" id="form_prestamo" method="post">
+        <div class="container">
+            <form class="" id="form_prestamo" method="post">
                <div class="row">
                  <div class="form-group col-6">
                    <label for="nombres" class="text-uppercase">nombres y apellidos*</label>
+                   <?php if ($_SESSION['role'] == "user") {?>
                    <input type="text" value="<?=$_SESSION['nombre'];?>" class="form-control" disabled>
                    <input type="hidden" name="nombre" value="<?=$_SESSION['nombre'];?>">
+                 <?php }else{ ?>
+                  <input type="text" name="nombre" class="form-control">
+                 <?php } ?>
                  </div>
                  <div class="form-group col-6">
                    <label for="nombres" class="text-uppercase">cédula/pasaporte*</label>
+                   <?php if ($_SESSION['role'] == "user") {?>
                    <input type="text" name="cedula_pasaporte" class="form-control" value="<?=$_SESSION['cedula'];?>" required disabled>
                    <input type="hidden" name="cedula_pasaporte" class="form-control" value="<?=$_SESSION['cedula'];?>">
+                  <?php }else{ ?>
+                  <input type="text" name="cedula_pasaporte" class="form-control" required>
+                 <?php } ?>
+                 </div>
                  </div>
                </div>
                <div class="row">
                  <div class="form-group col-6">
                    <label for="nombres" class="text-uppercase">fecha de nacimiento(01/01/1990)*</label>
+                   <?php if ($_SESSION['role'] == "user") {?>
                    <input type="date" class="form-control" value="<?=$_SESSION['fecha_nacimiento'];?>" disabled>
                    <input type="hidden" name="fecha_nacimiento" class="form-control" value="<?=$_SESSION['fecha_nacimiento'];?>">
+                  <?php }else{ ?>
+                  <input type="date" name="fecha_nacimiento" class="form-control" required="">
+                 <?php } ?>
                  </div>
                  <div class="form-group col-6">
                    <label for="nombres" class="text-uppercase">Teléfonos*</label>
+                   <?php if ($_SESSION['role'] == "user") {?>
                    <input type="tel" class="form-control" value="<?=$_SESSION['telefono'];?>" disabled>
                    <input type="hidden" name="telefono" class="form-control" value="<?=$_SESSION['telefono'];?>">
+                  <?php }else{ ?>
+                   <input type="tel" class="form-control" name="telefono" required="">
+                 <?php } ?>
                  </div>
                </div>
                <div class="row">
                  <div class="form-group col-6">
                    <label for="nombres" class="text-uppercase">email*</label>
+                   <?php if ($_SESSION['role'] == "user") {?>
                    <input type="email" name="email" value="<?=$_SESSION['email'];?>" class="form-control" required disabled>
                    <input type="hidden" name="email" value="<?=$_SESSION['email'];?>" class="form-control">
+                  <?php }else{ ?>
+                  <input type="email" name="email" class="form-control" required>
+                 <?php } ?>
                  </div>
                  <div class="form-group col-6">
                    <label for="nombres" class="text-uppercase">provincia*</label>
@@ -108,11 +142,17 @@ if (!isset($_SESSION['id_user'])) {
                     <option value="embargo">Embargo</option>
                     <option value="hipoteca">Hipoteca</option>
                   </select>
-                 <div class="form-group">
+               </div>
+              <div class="row">
+                 <div class="form-group col-6">
                    <label for="nombres" class="text-uppercase">Monto rd$*</label>
                    <input type="number" name="monto" class="form-control" required>
                  </div>
-               </div>
+                  <div class="form-group col-6">
+                   <label for="meses" class="text-uppercase">Tiempo a pagar en meses*</label>
+                   <input type="number" name="meses" class="form-control" required>
+                 </div>
+              </div>
                  <div class="form-group">
                    <label for="nombres" class="text-uppercase">comentario*</label>
                    <textarea class="form-control" name="comentario" rows="3" required></textarea>
@@ -120,6 +160,7 @@ if (!isset($_SESSION['id_user'])) {
             
                <input type="submit" name="" class="btn btn-success text-white justify-content-center enviar" value="Solicitar prestamo">
              </form>
+          </div>
       </div>
     </div>
   </div>
@@ -128,6 +169,7 @@ if (!isset($_SESSION['id_user'])) {
 
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/sweetalert2.js"></script>
 <script src="assets/js/toastr.min.js"></script>
 <script src="assets/js/main.js"></script>
 <script src="assets/js/buscadores.js"></script>

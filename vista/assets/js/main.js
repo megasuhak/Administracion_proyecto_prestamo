@@ -33,7 +33,7 @@ $(document).ready(function(){
 	$("#form_prestamo").submit(function(event){
 		event.preventDefault();
 		$.ajax({
-			url: '../controlador/agregar_prestamo.php',
+			url: '../controlador/prestamos/agregar_prestamo.php',
 			type: 'POST',
 			data: $(this).serialize(),
 			beforeSend:function(){
@@ -45,6 +45,7 @@ $(document).ready(function(){
 					console.log('Guardado');
 					$('#formulario_prestamo').modal('hide');
 					buscar_datos_prestamos();
+					$('#form_prestamo')[0].reset();
 				}else{
 					toastr.error('Status','No se puedo registrar, intente nuevamente.',{timeOut:5000});
 					console.log('Error');
@@ -90,7 +91,7 @@ $(document).ready(function(){
 
 function eliminar_prestamo(id_prestamo){
 	$.ajax({
-		url: '../controlador/eliminar_prestamo.php',
+		url: '../controlador/prestamos/eliminar_prestamo.php',
 		type: 'POST',
 		data: {id_prestamo:id_prestamo},
 		beforeSend:function(){
@@ -98,20 +99,11 @@ function eliminar_prestamo(id_prestamo){
 		},
 		success:function(data){
 			if (data) {
-				// toastr.success('','Eliminado correctamente!',{timeOut:5000});
-				Swal.fire({position: 'top',type: 'warning',
-				  title: 'Eliminado correctamente!',
-				  showConfirmButton: false,
-				  timer: 1500
-				});
+				toastr.success('','Eliminado correctamente!',{timeOut:5000});
 				buscar_datos_prestamos();
+				buscar_datos_prestamos_administrador()
 			}else{
-				// toastr.error('','No se puedo eliminar, intente nuevamente.',{timeOut:5000});
-				Swal.fire({position: 'top',type: 'error',
-				  title: 'Error al eliminar prestamo',
-				  showConfirmButton: false,
-				  timer: 1500
-				});
+				toastr.error('','No se puedo eliminar, intente nuevamente.',{timeOut:5000});
 			}
 		}
 	});

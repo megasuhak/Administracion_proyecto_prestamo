@@ -41,7 +41,7 @@
 
         </div>
         <div class="modal fade bd-example-modal-xl" id="formulario_prestamo" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
           <div class="modal-content">
             <div class="modal-header bg-primary">
              <h5 class="modal-title text-uppercase text-white" id="exampleModalScrollableTitle">Solicitud Préstamos con garantía</h5>
@@ -98,11 +98,17 @@
                     <option value="embargo">Embargo</option>
                     <option value="hipoteca">Hipoteca</option>
                   </select>
-                 <div class="form-group col-6">
-                   <label for="nombres" class="text-uppercase">monto a solicicitar rd$*</label>
-                   <input type="number" name="monto" class="form-control" value="" required>
-                 </div>
                </div>
+              <div class="row">
+                 <div class="form-group col-6">
+                   <label for="nombres" class="text-uppercase">Monto rd$*</label>
+                   <input type="number" name="monto" class="form-control" required>
+                 </div>
+                  <div class="form-group col-6">
+                   <label for="meses" class="text-uppercase">Tiempo a pagar en meses*</label>
+                   <input type="number" name="meses" class="form-control" required>
+                 </div>
+              </div>
                <div class="row">
                  <div class="form-group col-6">
                    <label for="nombres" class="text-uppercase">comentario*</label>
