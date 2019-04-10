@@ -67,8 +67,11 @@ public $conn;
 			session_start();
 			$_SESSION['id_user'] = $datos['id_user'];
 			$_SESSION['nombre'] = $datos['nombre']." ".$datos['apellido'];
+			$_SESSION['fecha_nacimiento'] = $datos['fecha_nacimiento'];
 			$_SESSION['email'] = $datos['email'];
 			$_SESSION['telefono'] = $datos['telefono'];
+			$_SESSION['cedula'] = $datos['cedula'];
+			$_SESSION['direccion'] = $datos['direccion'];
 			$_SESSION['role'] = $datos['role'];
 
 			// header("Location: dentro.php");

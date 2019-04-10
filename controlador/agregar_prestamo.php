@@ -1,12 +1,5 @@
 <?php
-session_start();
 include('../modelo/dao/conexion.php');
-
-if (isset($_SESSION['id_user']) {
-	$id_usuario = $_SESSION['id_user'];
-}else{
-	$id_usuario = 0;
-}
 
 $nombre = $_POST['nombre'];
 $cedula_pasaporte = $_POST['cedula_pasaporte'];
@@ -23,7 +16,9 @@ $tipo_prestamo = "garantia";
 $estado = "pendiente";
 $fecha = date('Y-m-d');
 
-$sql = "INSERT INTO prestamo(id_usuario,nombre,cedula_pasaporte,telefono,fecha_nacimiento,email,ciudad,provincia,calle,monto,tipo_garantia,tipo_prestamo,comentario,estado,fecha) VALUES('".$nombre."','".$cedula_pasaporte."','".$telefono."','".$fecha_nacimiento."','".$email."','".$ciudad."','".$provincia."','".$calle."','".$monto."','".$tipo_garantia."','".$tipo_prestamo."','".$comentario."','".$estado."','".$fecha."')";
+$sql = "INSERT INTO prestamo(nombre,cedula_pasaporte,telefono,fecha_nacimiento,email,ciudad,provincia,calle,monto,tipo_garantia,tipo_prestamo,comentario,estado,fecha) VALUES('".$nombre."','".$cedula_pasaporte."','".$telefono."','".$fecha_nacimiento."','".$email."','".$ciudad."','".$provincia."','".$calle."','".$monto."','".$tipo_garantia."','".$tipo_prestamo."','".$comentario."','".$estado."','".$fecha."')";
+
+var_dump($_POST);
 
 if (Conexion::ejecutar($sql)) {
 	return true;

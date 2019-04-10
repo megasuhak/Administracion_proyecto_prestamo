@@ -59,41 +59,46 @@ if (!isset($_SESSION['id_user'])) {
                <div class="row">
                  <div class="form-group col-6">
                    <label for="nombres" class="text-uppercase">nombres y apellidos*</label>
-                   <input type="text" name="nombre" class="form-control" value="" required>
+                   <input type="text" value="<?=$_SESSION['nombre'];?>" class="form-control" disabled>
+                   <input type="hidden" name="nombre" value="<?=$_SESSION['nombre'];?>">
                  </div>
                  <div class="form-group col-6">
                    <label for="nombres" class="text-uppercase">cédula/pasaporte*</label>
-                   <input type="text" name="cedula_pasaporte" class="form-control" value="" required>
+                   <input type="text" name="cedula_pasaporte" class="form-control" value="<?=$_SESSION['cedula'];?>" required disabled>
+                   <input type="hidden" name="cedula_pasaporte" class="form-control" value="<?=$_SESSION['cedula'];?>">
                  </div>
                </div>
                <div class="row">
                  <div class="form-group col-6">
                    <label for="nombres" class="text-uppercase">fecha de nacimiento(01/01/1990)*</label>
-                   <input type="date" name="fecha_nacimiento" class="form-control" value="" required>
+                   <input type="date" class="form-control" value="<?=$_SESSION['fecha_nacimiento'];?>" disabled>
+                   <input type="hidden" name="fecha_nacimiento" class="form-control" value="<?=$_SESSION['fecha_nacimiento'];?>">
                  </div>
                  <div class="form-group col-6">
                    <label for="nombres" class="text-uppercase">Teléfonos*</label>
-                   <input type="tel" name="telefono" class="form-control" value="" required>
+                   <input type="tel" class="form-control" value="<?=$_SESSION['telefono'];?>" disabled>
+                   <input type="hidden" name="telefono" class="form-control" value="<?=$_SESSION['telefono'];?>">
                  </div>
                </div>
                <div class="row">
                  <div class="form-group col-6">
                    <label for="nombres" class="text-uppercase">email*</label>
-                   <input type="email" name="email" class="form-control" value="" required>
+                   <input type="email" name="email" value="<?=$_SESSION['email'];?>" class="form-control" required disabled>
+                   <input type="hidden" name="email" value="<?=$_SESSION['email'];?>" class="form-control">
                  </div>
                  <div class="form-group col-6">
                    <label for="nombres" class="text-uppercase">provincia*</label>
-                   <input type="text" name="provincia" class="form-control" value="" required>
+                   <input type="text" name="provincia" class="form-control" required>
                  </div>
                </div>
                <div class="row">
                  <div class="form-group col-6">
                    <label for="nombres" class="text-uppercase">ciudad*</label>
-                   <input type="text" name="ciudad" class="form-control" value="" required>
+                   <input type="text" name="ciudad" class="form-control" required>
                  </div>
                  <div class="form-group col-6">
                    <label for="nombres" class="text-uppercase">calle*</label>
-                   <input type="text" name="calle" class="form-control" value="" required>
+                   <input type="text" name="calle" class="form-control" required>
                  </div>
                </div>
                 <div class="form_group">
@@ -105,7 +110,7 @@ if (!isset($_SESSION['id_user'])) {
                   </select>
                  <div class="form-group">
                    <label for="nombres" class="text-uppercase">Monto rd$*</label>
-                   <input type="number" name="monto" class="form-control" value="" required>
+                   <input type="number" name="monto" class="form-control" required>
                  </div>
                </div>
                  <div class="form-group">
