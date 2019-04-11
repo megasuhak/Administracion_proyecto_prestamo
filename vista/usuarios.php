@@ -33,11 +33,11 @@ if (!isset($_SESSION['id_user'])) {
 	            </div>
 	            <div class="col-sm-12 col-md-4 col-lg-4"></div>
 	            <div class="col-sm-12 col-md-4 col-lg-4">
-	                <input class="form-control mr-sm-2" type="search" name="buscar" placeholder="Buscar" id="buscador_prestamos" aria-label="Search">
+	                <input class="form-control mr-sm-2" type="search" name="buscar" placeholder="Buscar" id="buscador_usuarios" aria-label="Search">
 	            </div>
 	          </div>
 
-	          <div id="datos_prestamos" style="overflow-X:scroll;" class="mb-5"></div>
+	          <div id="datos_usuarios" style="overflow-X:scroll;" class="mb-5"></div>
 
 			</div>
 		</div>

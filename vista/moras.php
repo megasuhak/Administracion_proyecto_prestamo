@@ -27,7 +27,7 @@ if (!isset($_SESSION['id_user'])) {
 
 	          <div class="row">
 	            <div class="col-sm-12 col-md-4 col-lg-4">
-                <h2>Moras de usuarios</h2>
+                <h3>Moras de prestamos</h3>
 	            </div>
 	            <div class="col-sm-12 col-md-4 col-lg-4"></div>
 	            <div class="col-sm-12 col-md-4 col-lg-4">

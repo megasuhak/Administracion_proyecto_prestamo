@@ -24,7 +24,7 @@ if (!isset($_SESSION['id_user'])) {
 		<div class="col-sm-12 col-md-8 col-lg-8 pt-5">
 			<div class="container">
 				
-				<h2>Taza</h2>
+				<h2>Calcular taza</h2>
 
 				<div class="row justify-content-center">
 					<div class="col-sm-12 col-md-5 col-lg-5 pt-5 pb-5 shadow">

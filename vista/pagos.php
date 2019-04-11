@@ -8,7 +8,7 @@ if (!isset($_SESSION['id_user'])) {
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title></title>
+	<title>Finaciera</title>
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/animate.css">
 	<link rel="stylesheet" href="./assets/css/toastr.css"/>
@@ -24,20 +24,22 @@ if (!isset($_SESSION['id_user'])) {
 		</div>
 		<div class="col-sm-12 col-md-9 col-lg-9 pt-5">
 			<div class="container">
-				
-				<h2>Administradores</h2>
 
 	          <div class="row">
 	            <div class="col-sm-12 col-md-4 col-lg-4">
-	                <a class="nav-link text-white btn btn-primary" data-toggle="modal" data-target="#exampleModal" href="#">Agregar prestamo</a>
+                   <?php if ($_SESSION['role'] == "user") {?>
+	                <a class="nav-link text-white btn btn-primary" data-toggle="modal" data-target="#exampleModal" href="#">Agregar usuario</a>
+                <?php }else{?>
+                  <h3>Pagos realizados</h3>
+                <?php }?>
 	            </div>
 	            <div class="col-sm-12 col-md-4 col-lg-4"></div>
 	            <div class="col-sm-12 col-md-4 col-lg-4">
-	                <input class="form-control mr-sm-2" type="search" name="buscar" placeholder="Buscar" id="buscador_administradores" aria-label="Search">
+	                <input class="form-control mr-sm-2" type="search" name="buscar" placeholder="Buscar" id="buscador_pagos" aria-label="Search">
 	            </div>
 	          </div>
 
-	          <div id="datos_administradores" style="overflow-X:scroll;" class="mb-5"></div>
+	          <div id="datos_pagos" style="overflow-X:scroll;" class="mb-5"></div>
 
 			</div>
 		</div>
@@ -49,7 +51,7 @@ if (!isset($_SESSION['id_user'])) {
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Agregar administrador</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Agregar usuario</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
