@@ -11,7 +11,7 @@ if ($estado == "aprobado") {
 
 	$sql_fecha = "UPDATE prestamo SET fecha_estado = '".$fecha."' WHERE id_prestamo = '".$id_prestamo."'";
 	Conexion::ejecutar($sql_fecha);
-
+	
 	$sql_pagos = "INSERT INTO pagos(id_prestamo,imagen,estado,fecha) VALUES('".$id_prestamo."','default.jpg','deuda','".$fecha."')";
 	Conexion::ejecutar($sql_pagos);
 }

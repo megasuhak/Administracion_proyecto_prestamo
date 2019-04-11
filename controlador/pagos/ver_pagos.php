@@ -11,10 +11,10 @@ if (isset($_POST['consulta'])) {
 $datos = Conexion::consultar($sql);
 if (count($datos) > 0) {
 
-$result .= "<table class='table mt-3'><thead>
+$result .= "<table class='table mt-3 text-center'><thead>
 			<th>Id</th>
 			<th>Codigo prestamo</th>
-			<th>Imagen</th>
+			<th>Comprobante</th>
 			<th>Estado</th>
 			<th>Fecha</th>
 			<th>Acciones</th></thead><tbody>";
@@ -28,10 +28,41 @@ $result .= "<table class='table mt-3'><thead>
 			$clase_estado="success";
 		}
 
+		if ($value['fecha']) {
+			# code...
+		}
+
+		//proximo mes
+		$fecha = explode("-",$value['fecha']);
+		$dia = $fecha[0];
+		$mes = (($fecha[1]+1)<10)? "0".($fecha[1]+1): ($fecha[1]+1);
+		$ano = $fecha[2]+5;
+        $verificar_fecha = $dia."-".$mes."-".$ano;
+
+        //consultar pagos mensuales y agregar mora
+        $sql_prestamo = "SELECT * FROM prestamo WHERE id_prestamo = '".$value['id_prestamo']."'";
+		$prestamo = Conexion::una_consulta($sql_prestamo);
+
+		//calculando la taza 
+        $interes = (($prestamo['monto']*(10*.01))/$prestamo['meses']);
+		$pago_mensul = round((($prestamo['monto']/$prestamo['meses'])+$interes),2);
+		$mora_total = round(((30*$pago_mensul)/100),2);
+		$fecha = date("Y-m-d");
+
+
+        if ($verificar_fecha == date("Y-m-d")) {
+        		$sql_moras = "INSERT INTO moras(id_prestamo,mora,fecha) VALUES('".$value['id_prestamo']."','".$mora_total."','".$fecha."')";
+				Conexion::ejecutar($sql_moras);
+        }
+        // echo $verificar_fecha."<br>";
+
 	    $result .= "<tr><td>{$value['id']}</td>
 	    			<td>(P-{$value['id_prestamo']})</td>
-	    			<td>{$value['imagen']}</td>
-	    			<td><span class='badge badge-{$clase_estado}'>{$value['estado']}</span></td>
+	    			<td>
+	    			<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#comprobante'><img src='https://www.prestophoto.com/storage/static/landing/pdf-book-printing/upload-icon.png' width='30px'></button>
+	    			</td>
+	    			<td>
+	    			<span class='badge badge-{$clase_estado}'>{$value['estado']}</span></td>
 	    			<td>{$value['fecha']}</td>
 	    			<td width='200px'>
 	    				<a class='btn btn-secondary text-white' onclick='estado_pago_prestamo({$value['id']})'>Estado</a>
@@ -48,3 +79,25 @@ $result .= "</tbody></table>";
 echo $result;
 
 ?>
+
+
+<!-- Modal -->
+<div class="modal fade" id="comprobante" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Pago con comprobante</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

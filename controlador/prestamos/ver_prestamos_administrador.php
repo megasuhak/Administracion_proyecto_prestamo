@@ -35,21 +35,33 @@ $result .= "<table class='table mt-3'><thead>
 		}
 
 	    $result .= "<tr><td>(P-{$value['id_prestamo']})</td>
-	    			<td>{$value['monto']}</td>
+	    			<td>\${$value['monto']}</td>
 	    			<td>{$value['meses']}</td>
-	    			<td><span class='badge badge-info'>{$pago_mensul}</span></td>
+	    			<td><span class='badge badge-info'>\${$pago_mensul}</span></td>
 	    			<td>{$value['tipo_garantia']}</td>
 	    			<td><span class='badge badge-{$clase_estado}'>{$value['estado']}</span></td>
 	    			<td width='200px'>
 	    				<a class='btn btn-warning' onclick=''><img src='../vista/assets/img/editar.png' width='20'></a>
 	    				<a class='btn btn-danger' onclick='eliminar_prestamo({$value['id_prestamo']});'><img src='../vista/assets/img/eliminar.png' width='18'></a>
 	    			</td>
-	    			<td>
-	    			<button class='btn btn-secondary' onclick='estado_prestamo({$value['id_prestamo']},\"pendiente\")'>P</button>
-	    			<button class='btn btn-success' onclick='estado_prestamo({$value['id_prestamo']},\"aprobado\")'>A</button>
-	    			<button class='btn btn-danger' onclick='estado_prestamo({$value['id_prestamo']},\"rechazado\")'>R</button>
-	    			</td>
-	    			</tr>";
+	    			<td>";
+		
+				if($value['estado'] == 'aprobado'){
+					$result .= "<button class='btn btn-secondary' disabled>P</button>
+								<button class='btn btn-success' disabled>A</button>
+								<button class='btn btn-danger' disabled>R</button>";
+				}else if($value['estado'] == 'rechazado'){
+					$result .= "<button class='btn btn-secondary' onclick='estado_prestamo({$value['id_prestamo']},\"pendiente\")'>P</button>
+							<button class='btn btn-success' onclick='estado_prestamo({$value['id_prestamo']},\"aprobado\")'>A</button>
+							<button class='btn btn-danger' onclick='estado_prestamo({$value['id_prestamo']},\"rechazado\")'>R</button>";
+				}else if($value['estado'] == 'pendiente'){
+					$result .= "<button class='btn btn-secondary' onclick='estado_prestamo({$value['id_prestamo']},\"pendiente\")'>P</button>
+							<button class='btn btn-success' onclick='estado_prestamo({$value['id_prestamo']},\"aprobado\")'>A</button>
+							<button class='btn btn-danger' onclick='estado_prestamo({$value['id_prestamo']},\"rechazado\")'>R</button>";
+				}
+
+	    			
+	    			$result .= "</td></tr>";
 
 	}
 

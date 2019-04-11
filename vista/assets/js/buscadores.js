@@ -3,6 +3,7 @@ $(buscar_datos_prestamos_administrador());
 $(buscar_datos_usuarios());
 $(buscar_datos_administradores());
 $(buscar_datos_pagos());
+$(buscar_datos_moras());
 
 
 function buscar_datos_prestamos(consulta){
@@ -79,7 +80,7 @@ function buscar_datos_usuarios(consulta){
 	})
 }
 
-$(document).on('keyup','#buscador_prestamos',function(){
+$(document).on('keyup','#buscador_usuarios',function(){
 	var valor = $(this).val();
 	if(valor != ""){
 		buscar_datos_usuarios(valor);
@@ -107,7 +108,7 @@ function buscar_datos_administradores(consulta){
 	})
 }
 
-$(document).on('keyup','#buscador_prestamos',function(){
+$(document).on('keyup','#buscador_administradores',function(){
 	var valor = $(this).val();
 	if(valor != ""){
 		buscar_datos_administradores(valor);
@@ -141,5 +142,33 @@ $(document).on('keyup','#buscador_pagos',function(){
 		buscar_datos_pagos(valor);
 	}else{
 		buscar_datos_pagos();
+	}
+});
+
+//moras
+function buscar_datos_moras(consulta){
+	$.ajax({
+		url: '../controlador/moras/ver_moras.php',
+		type: 'POST',
+		dataType: 'html',
+		data: {consulta:consulta},
+		beforeSend:function(){
+			$("#datos_moras").html("<br><h3>Cargando....</h3>");
+		}
+	}).
+	done(function(response){
+		$("#datos_moras").html(response);
+	}).
+	fail(function(){
+		console.log("Error :(");
+	})
+}
+
+$(document).on('keyup','#buscador_moras',function(){
+	var valor = $(this).val();
+	if(valor != ""){
+		buscar_datos_moras(valor);
+	}else{
+		buscar_datos_moras();
 	}
 });

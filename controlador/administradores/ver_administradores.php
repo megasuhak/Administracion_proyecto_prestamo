@@ -5,7 +5,7 @@ $result = "";
 $sql = "SELECT * FROM usuarios WHERE role = 'admin' ORDER BY id_user DESC limit 30";
 if (isset($_POST['consulta'])) {
 	$q = Conexion::getConexion()->real_escape_string($_POST['consulta']);
-	$sql = "SELECT * FROM usuarios WHERE nombre LIKE '%".$q."%' OR cedula LIKE '%".$q."%' OR email LIKE '%".$q."%' AND role = 'admin'";
+	$sql = "SELECT * FROM usuarios WHERE role = 'admin' AND nombre LIKE '%".$q."%' OR cedula LIKE '%".$q."%'";
 }
 
 $datos = Conexion::consultar($sql);
