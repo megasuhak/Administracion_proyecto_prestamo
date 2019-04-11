@@ -30,17 +30,19 @@ CREATE TABLE `prestamo` (
   `provincia` varchar(60) DEFAULT NULL,
   `calle` varchar(60) DEFAULT NULL,
   `monto` int(11) DEFAULT NULL,
+  `meses` int(11) DEFAULT NULL,
   `tipo_garantia` enum('aval','hipoteca','embargo') DEFAULT NULL,
   `tipo_prestamo` enum('no_garantia','garantia') DEFAULT NULL,
   `comentario` text,
-  `estado` enum('pendiente','aprobado','rechasado') DEFAULT NULL,
+  `estado` enum('pendiente','aprobado','rechazado') DEFAULT NULL,
+  `fecha_estado` date DEFAULT NULL,
   `fecha` date DEFAULT NULL,
   PRIMARY KEY (`id_prestamo`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 /*Data for the table `prestamo` */
 
-insert  into `prestamo`(`id_prestamo`,`nombre`,`cedula_pasaporte`,`telefono`,`fecha_nacimiento`,`email`,`ciudad`,`provincia`,`calle`,`monto`,`tipo_garantia`,`tipo_prestamo`,`comentario`,`estado`,`fecha`) values (6,'alvaro jaquez','40237252669','456789',2019,'alvaro@gmail.com','asdfjaklsdf','waaaaa','asdfasd',8990,'embargo','garantia','holklk','pendiente','2019-04-10'),(7,'alvaro jaquez','40237252669','456789',2019,'alvaro@gmail.com','asdfasd','waaaaa','asdfasdf',800,'aval','garantia','ninguno','pendiente','2019-04-10');
+insert  into `prestamo`(`id_prestamo`,`nombre`,`cedula_pasaporte`,`telefono`,`fecha_nacimiento`,`email`,`ciudad`,`provincia`,`calle`,`monto`,`meses`,`tipo_garantia`,`tipo_prestamo`,`comentario`,`estado`,`fecha_estado`,`fecha`) values (16,'Robertico chacon','089890809','870938290',2019,'hola@gmail.com','Santo domingo','san cristobal','segunda',12000,4,'aval','garantia','Prestamo de prestamo','pendiente',NULL,'2019-04-11'),(17,'asdfasd asdfsd','40237252669','1234567890',2019,'admin@gmail.com','la vega','san juan ','alli',50000,12,'embargo','garantia','A gastar cualto','rechazado',NULL,'2019-04-11');
 
 /*Table structure for table `usuarios` */
 
@@ -65,7 +67,7 @@ CREATE TABLE `usuarios` (
 
 /*Data for the table `usuarios` */
 
-insert  into `usuarios`(`id_user`,`nombre`,`apellido`,`fecha_nacimiento`,`email`,`cedula`,`telefono`,`direccion`,`clave`,`imagen`,`role`,`estado`,`fecha`) values (15,'asdfasd','asdfsd','2019-04-04','admin@gmail.com','40237252669','1234567890','asdfasdf','21232f297a57a5a743894a0e4a801fc3','default.png','user','inactivo','2019-04-09'),(16,'Robertico','chacon','2019-04-04','hola@gmail.com','089890809','870938290','itla','4d186321c1a7f0f354b297e8914ab240','default.png','user','inactivo','2019-04-09'),(17,'Robertico','chacon','2019-04-04','hola@gmail.com','089890809','870938290','itla','4d186321c1a7f0f354b297e8914ab240','default.png','admin','inactivo','2019-04-09'),(18,'alvaro','jaquez','2019-04-09','alvaro@gmail.com','40237252669','456789','aqui','98db6b79acb71383b5a83e0bbc1cadd4','default.png','admin','inactivo','2019-04-09');
+insert  into `usuarios`(`id_user`,`nombre`,`apellido`,`fecha_nacimiento`,`email`,`cedula`,`telefono`,`direccion`,`clave`,`imagen`,`role`,`estado`,`fecha`) values (15,'asdfasd','asdfsd','2019-04-04','admin@gmail.com','40237252669','1234567890','asdfasdf','21232f297a57a5a743894a0e4a801fc3','default.png','user','inactivo','2019-04-09'),(16,'Robertico','chacon','2019-04-04','hola@gmail.com','089890809','870938290','itla','4d186321c1a7f0f354b297e8914ab240','default.png','user','inactivo','2019-04-09'),(18,'alvaro','jaquez','2019-04-09','alvaro@gmail.com','40237252669','456789','aqui','98db6b79acb71383b5a83e0bbc1cadd4','default.png','admin','inactivo','2019-04-09');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

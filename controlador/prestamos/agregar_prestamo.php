@@ -15,9 +15,10 @@ $comentario = $_POST['comentario'];
 $tipo_garantia = $_POST['tipo_garantia'];
 $tipo_prestamo = "garantia";
 $estado = "pendiente";
+$fecha_estado = date('Y-m-d');
 $fecha = date('Y-m-d');
 
-$sql = "INSERT INTO prestamo(nombre,cedula_pasaporte,telefono,fecha_nacimiento,email,ciudad,provincia,calle,monto,meses,tipo_garantia,tipo_prestamo,comentario,estado,fecha) VALUES('".$nombre."','".$cedula_pasaporte."','".$telefono."','".$fecha_nacimiento."','".$email."','".$ciudad."','".$provincia."','".$calle."','".$monto."','".$meses."','".$tipo_garantia."','".$tipo_prestamo."','".$comentario."','".$estado."','".$fecha."')";
+$sql = "INSERT INTO prestamo(nombre,cedula_pasaporte,telefono,fecha_nacimiento,email,ciudad,provincia,calle,monto,meses,tipo_garantia,tipo_prestamo,comentario,estado,fecha_estado,fecha) VALUES('".$nombre."','".$cedula_pasaporte."','".$telefono."','".$fecha_nacimiento."','".$email."','".$ciudad."','".$provincia."','".$calle."','".$monto."','".$meses."','".$tipo_garantia."','".$tipo_prestamo."','".$comentario."','".$estado."','".$fecha_estado."','".$fecha."')";
 
 var_dump($_POST);
 

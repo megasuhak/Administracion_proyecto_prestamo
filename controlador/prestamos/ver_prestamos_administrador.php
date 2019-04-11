@@ -13,23 +13,19 @@ if (count($datos) > 0) {
 
 $result .= "<table class='table mt-3'><thead>
 			<th>Id</th>
-			<th>Nombre</th>
-			<th>Cedula_pasaporte</th>
-			<th>Telefono</th>
-			<th>Nacimiento</th>
-			<th>Email</th>
 			<th>Monto</th>
 			<th>Meses</th>
 			<th>Pagos Mensual</th>
 			<th>Garantia</th>
 			<th>Estado</th>
-			<th>Acciones</th></thead><tbody>";
+			<th>Acciones</th>
+			<th>Cambio estado</th></thead><tbody>";
 
 
 	foreach ($datos as $key => $value) {
 
 		$interes = (($value['monto']*(10*.01))/$value['meses']);
-		$pago_mensul = (($value['monto']/$value['meses'])+$interes);
+		$pago_mensul = round((($value['monto']/$value['meses'])+$interes),2);
 		if($value['estado'] == 'pendiente'){
 			$clase_estado="secondary";
 		}else if($value['estado'] == 'aprobado'){
@@ -38,22 +34,22 @@ $result .= "<table class='table mt-3'><thead>
 			$clase_estado="danger";
 		}
 
-	    $result .= "<tr><td>{$value['id_prestamo']}</td>
-	    			<td>{$value['nombre']}</td>
-	    			<td>{$value['cedula_pasaporte']}</td>
-	    			<td>{$value['telefono']}</td>
-	    			<td>{$value['fecha_nacimiento']}</td>
-	    			<td>{$value['email']}</td>
+	    $result .= "<tr><td>(P-{$value['id_prestamo']})</td>
 	    			<td>{$value['monto']}</td>
 	    			<td>{$value['meses']}</td>
 	    			<td><span class='badge badge-info'>{$pago_mensul}</span></td>
 	    			<td>{$value['tipo_garantia']}</td>
 	    			<td><span class='badge badge-{$clase_estado}'>{$value['estado']}</span></td>
-	    			<td>
+	    			<td width='200px'>
 	    				<a class='btn btn-warning' onclick=''><img src='../vista/assets/img/editar.png' width='20'></a>
 	    				<a class='btn btn-danger' onclick='eliminar_prestamo({$value['id_prestamo']});'><img src='../vista/assets/img/eliminar.png' width='18'></a>
-	    				<a class='btn btn-secondary text-white' onclick=''>Pendiente</a>
-	    			</td></tr>";
+	    			</td>
+	    			<td>
+	    			<button class='btn btn-secondary' onclick='estado_prestamo({$value['id_prestamo']},\"pendiente\")'>P</button>
+	    			<button class='btn btn-success' onclick='estado_prestamo({$value['id_prestamo']},\"aprobado\")'>A</button>
+	    			<button class='btn btn-danger' onclick='estado_prestamo({$value['id_prestamo']},\"rechazado\")'>R</button>
+	    			</td>
+	    			</tr>";
 
 	}
 

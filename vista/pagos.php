@@ -27,11 +27,7 @@ if (!isset($_SESSION['id_user'])) {
 
 	          <div class="row">
 	            <div class="col-sm-12 col-md-4 col-lg-4">
-                   <?php if ($_SESSION['role'] == "user") {?>
-	                <a class="nav-link text-white btn btn-primary" data-toggle="modal" data-target="#exampleModal" href="#">Agregar usuario</a>
-                <?php }else{?>
-                  <h3>Pagos realizados</h3>
-                <?php }?>
+                  <h3>Pagos de prestamos</h3>
 	            </div>
 	            <div class="col-sm-12 col-md-4 col-lg-4"></div>
 	            <div class="col-sm-12 col-md-4 col-lg-4">

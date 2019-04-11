@@ -28,7 +28,7 @@ $result .= "<table class='table mt-3'><thead>
 	foreach ($datos as $key => $value) {
 
 		$interes = (($value['monto']*(10*.01))/$value['meses']);
-		$pago_mensul = (($value['monto']/$value['meses'])+$interes);
+		$pago_mensul = round((($value['monto']/$value['meses'])+$interes),2);
 		$editar = "";
 		$eliminar = "";
 		if($value['estado'] == 'pendiente'){
@@ -43,7 +43,7 @@ $result .= "<table class='table mt-3'><thead>
 		}
 
 
-	    $result .= "<tr><td>{$value['id_prestamo']}</td>
+	    $result .= "<tr><td>(P-{$value['id_prestamo']})</td>
 	    			<td>{$value['nombre']}</td>
 	    			<td>{$value['cedula_pasaporte']}</td>
 	    			<td>{$value['telefono']}</td>

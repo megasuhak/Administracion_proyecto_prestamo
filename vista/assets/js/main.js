@@ -101,9 +101,49 @@ function eliminar_prestamo(id_prestamo){
 			if (data) {
 				toastr.success('','Eliminado correctamente!',{timeOut:5000});
 				buscar_datos_prestamos();
-				buscar_datos_prestamos_administrador()
+				buscar_datos_prestamos_administrador();
 			}else{
 				toastr.error('','No se puedo eliminar, intente nuevamente.',{timeOut:5000});
+			}
+		}
+	});
+}
+
+
+function estado_prestamo(id_prestamo,estado){
+	$.ajax({
+		url: '../controlador/prestamos/cambiar_estado_prestamo.php',
+		type: 'POST',
+		data: {id_prestamo:id_prestamo,estado:estado},
+		beforeSend:function(){
+			toastr.info('Status','Procesando...',{timeOut:3000});
+		},
+		success:function(data){
+			if (data) {
+				toastr.success('','correcto!',{timeOut:5000});
+				buscar_datos_prestamos_administrador();
+			}else if (data) {
+				toastr.error('','Intente nuevamente.',{timeOut:5000});
+			}
+		}
+	});
+}
+
+
+function estado_pago_prestamo(id_pago){
+	$.ajax({
+		url: '../controlador/pagos/cambiar_estado_pago.php',
+		type: 'POST',
+		data: {id_pago:id_pago},
+		beforeSend:function(){
+			toastr.info('Status','Procesando...',{timeOut:3000});
+		},
+		success:function(data){
+			if (data) {
+				toastr.success('','correcto!',{timeOut:5000});
+				buscar_datos_pagos();
+			}else if (data) {
+				toastr.error('','Intente nuevamente.',{timeOut:5000});
 			}
 		}
 	});

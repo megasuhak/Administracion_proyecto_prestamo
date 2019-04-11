@@ -25,7 +25,7 @@ if (!isset($_SESSION['id_user'])) {
 		<div class="col-sm-12 col-md-8 col-lg-8 pt-5">
 			<div class="container">
 				
-				<h2>Estadisca de prestamos</h2>
+				<h2>Estadisticas de prestamos</h2>
 
 <canvas id="myChart"></canvas>
 

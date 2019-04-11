@@ -2,6 +2,7 @@ $(buscar_datos_prestamos());
 $(buscar_datos_prestamos_administrador());
 $(buscar_datos_usuarios());
 $(buscar_datos_administradores());
+$(buscar_datos_pagos());
 
 
 function buscar_datos_prestamos(consulta){
@@ -112,5 +113,33 @@ $(document).on('keyup','#buscador_prestamos',function(){
 		buscar_datos_administradores(valor);
 	}else{
 		buscar_datos_administradores();
+	}
+});
+
+//pagos
+function buscar_datos_pagos(consulta){
+	$.ajax({
+		url: '../controlador/pagos/ver_pagos.php',
+		type: 'POST',
+		dataType: 'html',
+		data: {consulta:consulta},
+		beforeSend:function(){
+			$("#datos_pagos").html("<br><h3>Cargando....</h3>");
+		}
+	}).
+	done(function(response){
+		$("#datos_pagos").html(response);
+	}).
+	fail(function(){
+		console.log("Error :(");
+	})
+}
+
+$(document).on('keyup','#buscador_pagos',function(){
+	var valor = $(this).val();
+	if(valor != ""){
+		buscar_datos_pagos(valor);
+	}else{
+		buscar_datos_pagos();
 	}
 });
