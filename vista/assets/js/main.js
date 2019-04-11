@@ -85,6 +85,35 @@ $(document).ready(function(){
 		});	
 	});
 
+	$("#frm_comprobante").submit(function(event){
+		event.preventDefault();
+
+		var formData = new FormData;
+		formData.append("id_pago_comprobante",$("input[name=id_pago_comprobante]").val());
+		formData.append("imagen",$("input[name=imagen]")[0].files[0]);
+
+		$.ajax({
+			url:'../controlador/comprobantes/guardar_comprobante.php',
+			type:'POST',
+			data:formData,
+			method:'POST',
+			processData:false,
+			contentType:false,
+			cache:false,
+			beforeSend:function(){
+				toastr.info('Status','Procesando...',{timeOut:3000});
+			},
+			success: function(data){
+				if(data){
+					toastr.success('','Subida completado!',{timeOut:5000});
+				}else{
+					toastr.error('','Intantar mas tarde',{timeOut:5000});
+				}
+			}
+		});
+	
+	});
+
 
 });
 
@@ -147,4 +176,15 @@ function estado_pago_prestamo(id_pago){
 			}
 		}
 	});
+}
+
+
+function valor_id_pago_comprobante(id_pago,imagen){
+	console.log(imagen);
+	$("#id_pago_comprobante").val(id_pago);
+	if (imagen == "") {
+		$("#imagen_comprobante").attr('src','https://portal.icetex.gov.co/Portal/images/default-source/el-icetex-imagenes/iconos-estudiantes/ico-pague-facil.png');
+	}else{
+		$("#imagen_comprobante").attr('src','./assets/img/pagos/'+imagen);
+	}
 }
