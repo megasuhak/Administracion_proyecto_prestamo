@@ -15,6 +15,39 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`financiera` /*!40100 DEFAULT CHARACTER 
 
 USE `financiera`;
 
+/*Table structure for table `moras` */
+
+DROP TABLE IF EXISTS `moras`;
+
+CREATE TABLE `moras` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_prestamo` int(11) DEFAULT NULL,
+  `mora` int(11) DEFAULT NULL,
+  `fecha` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+/*Data for the table `moras` */
+
+insert  into `moras`(`id`,`id_prestamo`,`mora`,`fecha`) values (1,17,1375,'0000-00-00'),(2,17,1375,'0000-00-00'),(3,17,1375,'0000-00-00'),(4,17,1375,'0000-00-00'),(5,17,1375,'0000-00-00');
+
+/*Table structure for table `pagos` */
+
+DROP TABLE IF EXISTS `pagos`;
+
+CREATE TABLE `pagos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_prestamo` int(11) DEFAULT NULL,
+  `imagen` text,
+  `estado` enum('pago','deuda') DEFAULT NULL,
+  `fecha` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+/*Data for the table `pagos` */
+
+insert  into `pagos`(`id`,`id_prestamo`,`imagen`,`estado`,`fecha`) values (1,17,'default.jpg','deuda','2019-04-11'),(2,17,'default.jpg','pago','2019-04-11'),(3,17,'default.jpg','deuda','2019-04-11'),(4,17,'default.jpg','pago','2019-04-11'),(5,17,'default.jpg','pago','2019-04-11'),(6,17,'default.jpg','pago','2019-04-11'),(7,16,'default.jpg','deuda','2019-04-11');
+
 /*Table structure for table `prestamo` */
 
 DROP TABLE IF EXISTS `prestamo`;
@@ -42,7 +75,7 @@ CREATE TABLE `prestamo` (
 
 /*Data for the table `prestamo` */
 
-insert  into `prestamo`(`id_prestamo`,`nombre`,`cedula_pasaporte`,`telefono`,`fecha_nacimiento`,`email`,`ciudad`,`provincia`,`calle`,`monto`,`meses`,`tipo_garantia`,`tipo_prestamo`,`comentario`,`estado`,`fecha_estado`,`fecha`) values (16,'Robertico chacon','089890809','870938290',2019,'hola@gmail.com','Santo domingo','san cristobal','segunda',12000,4,'aval','garantia','Prestamo de prestamo','pendiente',NULL,'2019-04-11'),(17,'asdfasd asdfsd','40237252669','1234567890',2019,'admin@gmail.com','la vega','san juan ','alli',50000,12,'embargo','garantia','A gastar cualto','rechazado',NULL,'2019-04-11');
+insert  into `prestamo`(`id_prestamo`,`nombre`,`cedula_pasaporte`,`telefono`,`fecha_nacimiento`,`email`,`ciudad`,`provincia`,`calle`,`monto`,`meses`,`tipo_garantia`,`tipo_prestamo`,`comentario`,`estado`,`fecha_estado`,`fecha`) values (16,'Robertico chacon','089890809','870938290',2019,'hola@gmail.com','Santo domingo','san cristobal','segunda',12000,4,'aval','garantia','Prestamo de prestamo','aprobado','2019-04-11','2019-04-11'),(17,'asdfasd asdfsd','40237252669','1234567890',2019,'admin@gmail.com','la vega','san juan ','alli',50000,12,'embargo','garantia','A gastar cualto','aprobado','2019-04-11','2019-04-11');
 
 /*Table structure for table `usuarios` */
 
