@@ -26,6 +26,28 @@ if (!isset($_SESSION['id_user'])) {
 				
 				<h2>Perfil</h2>
 
+				<div class="row">
+					<div class="col-sm-12 col-md-5 col-lg-5">
+						<div class="container">
+							<img src="assets/img/default.png" alt="">
+						</div>
+					</div>
+					<div class="col-sm-12 col-md-7 col-lg-7">
+						<div class="container">
+							<h2 class="alert alert-success">Datos personales</h2> 
+							<h4>Nombre:</h4>
+							<?=$_SESSION['nombre'];?>
+							<h4>Cedula:</h4>
+							<?=$_SESSION['cedula'];?>
+							<h4>Correo:</h4>
+							<?=$_SESSION['email'];?>
+							<h4>Telefono:</h4>
+							<?=$_SESSION['telefono'];?>
+							<h4>Role:</h4>
+							<?=$_SESSION['role'];?>
+						</div>
+					</div>
+				</div>
 
 			</div>
 		</div>

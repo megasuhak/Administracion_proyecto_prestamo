@@ -43,6 +43,34 @@ if (!isset($_SESSION['id_user'])) {
 </div>
 
 
+<!-- Modal -->
+<div class="modal fade" id="comprobante" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Pago con comprobante</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <center>
+        <img src="https://portal.icetex.gov.co/Portal/images/default-source/el-icetex-imagenes/iconos-estudiantes/ico-pague-facil.png" id="imagen_comprobante" alt="" class="mt-5 mb-5" width="50%">
+      </center>
+      <?php if($_SESSION['role'] == "user"){ ?>
+      <div class="modal-body">
+        <form id="frm_comprobante" method="POST" enctype="multipart/form-data">
+        <input type="hidden" id="id_pago_comprobante" name="id_pago_comprobante">
+    <input type="file" name="imagen" id="imagen" accept="image/*" required="">
+    <input type="submit" class="btn btn-success" value="Guardar Imagen">
+    </form>
+      </div>
+      <?php } ?>
+
+    </div>
+  </div>
+</div>
+
+
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

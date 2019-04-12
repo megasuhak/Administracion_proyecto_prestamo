@@ -1,8 +1,13 @@
 <?php 
+session_start();
 include('../../modelo/dao/conexion.php');
 
+        //consultar pagos mensuales y agregar mora
+        $sql_prestamo_data_user = "SELECT * FROM prestamo WHERE email = '".$_SESSION['email']."'";
+		$prestamo_user = Conexion::una_consulta($sql_prestamo_data_user);
+
 $result = "";
-$sql = "SELECT * FROM pagos ORDER BY id DESC limit 30";
+$sql = "SELECT * FROM pagos WHERE id_prestamo = '".$prestamo_user['id_prestamo']."' ORDER BY id DESC limit 30";
 if (isset($_POST['consulta'])) {
 	$q = Conexion::getConexion()->real_escape_string($_POST['consulta']);
 	$sql = "SELECT * FROM pagos WHERE id_prestamo LIKE '%".$q."%' OR fecha LIKE '%".$q."%' OR estado LIKE '%".$q."%'";
@@ -69,9 +74,13 @@ $result .= "<table class='table mt-3 text-center'><thead>
 	    			<td>
 	    			<span class='badge badge-{$clase_estado}'>{$value['estado']}</span></td>
 	    			<td>{$value['fecha']}</td>
-	    			<td width='200px'>
-	    				<a class='btn btn-secondary text-white' onclick='estado_pago_prestamo({$value['id']})'>Estado</a>
-	    			</td></tr>";
+	    			<td width='200px'>";
+
+	    			if ($_SESSION['role'] == 'admin') {
+	    				$result .= "<a class='btn btn-secondary text-white' onclick='estado_pago_prestamo({$value['id']})'>Estado</a>";	
+	    			}
+
+	    			$result .= "</td></tr>";
 
 	}
 
@@ -84,29 +93,3 @@ $result .= "</tbody></table>";
 echo $result;
 
 ?>
-
-
-<!-- Modal -->
-<div class="modal fade" id="comprobante" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Pago con comprobante</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <center>
-      	<img src="https://portal.icetex.gov.co/Portal/images/default-source/el-icetex-imagenes/iconos-estudiantes/ico-pague-facil.png" id="imagen_comprobante" alt="" width="50%">
-      </center>
-      <div class="modal-body">
-        <form id="frm_comprobante" enctype="multipart/form-data">
-        <input type="hidden" id="id_pago_comprobante" name="id_pago_comprobante">
-		<input type="file" name="imagen" id="imagen" accept="image/*" required="">
-		<input type="submit" class="btn btn-success" value="Guardar Imagen">
-	</form>
-      </div>
-
-    </div>
-  </div>
-</div>

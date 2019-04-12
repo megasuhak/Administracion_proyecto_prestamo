@@ -1,11 +1,16 @@
 <?php 
+session_start();
 include('../../modelo/dao/conexion.php');
 
+        //consultar pagos mensuales y agregar mora
+        $sql_prestamo_data_user = "SELECT * FROM prestamo WHERE email = '".$_SESSION['email']."'";
+		$prestamo_user = Conexion::una_consulta($sql_prestamo_data_user);
+
 $result = "";
-$sql = "SELECT * FROM moras ORDER BY id DESC limit 30";
+$sql = "SELECT * FROM moras WHERE id_prestamo = '".$prestamo_user['id_prestamo']."' ORDER BY id DESC limit 30";
 if (isset($_POST['consulta'])) {
 	$q = Conexion::getConexion()->real_escape_string($_POST['consulta']);
-	$sql = "SELECT * FROM moras WHERE id_prestamo LIKE '%".$q."%' OR fecha LIKE '%".$q."%' OR estado LIKE '%".$q."%'";
+	$sql = "SELECT * FROM moras WHERE id_prestamo = '".$prestamo_user['id_prestamo']."' LIKE '%".$q."%' OR fecha LIKE '%".$q."%' OR estado LIKE '%".$q."%'";
 }
 
 $datos = Conexion::consultar($sql);
@@ -38,7 +43,7 @@ $result .= "<table class='table mt-3'><thead>
 		$pago_mensul = round((($prestamo['monto']/$prestamo['meses'])+$interes),2);
 		$mora_total = round(((30*$pago_mensul)/100),2);
 		// echo $mora_total;
-		$residuo = ($prestamo['monto']-$mora_total);
+		$residuo = (($prestamo['monto']-$mora_total)-$pago_mensul);
 
 	    $result .= "<tr><td>{$value['id']}</td>
 	    			<td>(P-{$value['id_prestamo']})</td>

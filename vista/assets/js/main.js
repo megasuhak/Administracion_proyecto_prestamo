@@ -1,5 +1,36 @@
 $(document).ready(function(){
 
+$("#frm_comprobante").submit(function(event){
+		event.preventDefault();
+
+		var formData = new FormData;
+		formData.append("id_pago_comprobante",$("input[name=id_pago_comprobante]").val());
+		formData.append("imagen",$("input[name=imagen]")[0].files[0]);
+
+		$.ajax({
+			url:'../controlador/comprobantes/guardar_comprobante.php',
+			type:'POST',
+			data:formData,
+			method:'POST',
+			processData:false,
+			contentType:false,
+			cache:false,
+			beforeSend:function(){
+				toastr.info('Status','Procesando...',{timeOut:3000});
+			},
+			success: function(data){
+				if(data){
+					toastr.success('','Subida completado!',{timeOut:5000});
+					buscar_datos_pagos();
+					$("#comprobante").modal('hide');
+				}else{
+					toastr.error('','Intantar mas tarde',{timeOut:5000});
+				}
+			}
+		});
+	
+	});
+
 	$("#login_usuario").submit(function(event){
 		event.preventDefault();
 		$.ajax({
@@ -11,20 +42,10 @@ $(document).ready(function(){
 			},
 			success:function(data){
 				if (data) {
-					// toastr.success('Status','Datos correctos!',{timeOut:5000});
-					Swal.fire({position: 'top',type: 'success',
-					  title: 'Datos correctos',
-					  showConfirmButton: false,
-					  timer: 1500
-					})
+					toastr.success('Status','Datos correctos!',{timeOut:5000});
 					setTimeout(function(){location.href = './dentro.php';},1000);
 				}else{
-					// toastr.error('Status','Datos incorrectos, intente nuevamente.',{timeOut:5000});
-					Swal.fire({position: 'top',type: 'error',
-					  title: 'Datos incorrectos, intentar nuevamente!',
-					  showConfirmButton: false,
-					  timer: 1500
-					})
+					toastr.error('Status','Datos incorrectos, intente nuevamente.',{timeOut:5000});
 				}
 			}
 		});
@@ -84,36 +105,6 @@ $(document).ready(function(){
 			}
 		});	
 	});
-
-	$("#frm_comprobante").submit(function(event){
-		event.preventDefault();
-
-		var formData = new FormData;
-		formData.append("id_pago_comprobante",$("input[name=id_pago_comprobante]").val());
-		formData.append("imagen",$("input[name=imagen]")[0].files[0]);
-
-		$.ajax({
-			url:'../controlador/comprobantes/guardar_comprobante.php',
-			type:'POST',
-			data:formData,
-			method:'POST',
-			processData:false,
-			contentType:false,
-			cache:false,
-			beforeSend:function(){
-				toastr.info('Status','Procesando...',{timeOut:3000});
-			},
-			success: function(data){
-				if(data){
-					toastr.success('','Subida completado!',{timeOut:5000});
-				}else{
-					toastr.error('','Intantar mas tarde',{timeOut:5000});
-				}
-			}
-		});
-	
-	});
-
 
 });
 
@@ -183,7 +174,7 @@ function valor_id_pago_comprobante(id_pago,imagen){
 	console.log(imagen);
 	$("#id_pago_comprobante").val(id_pago);
 	if (imagen == "") {
-		$("#imagen_comprobante").attr('src','https://portal.icetex.gov.co/Portal/images/default-source/el-icetex-imagenes/iconos-estudiantes/ico-pague-facil.png');
+		$("#imagen_comprobante").attr('src','https://munini.net/wp/wp-content/plugins/woocommerce/assets/images/placeholder.png');
 	}else{
 		$("#imagen_comprobante").attr('src','./assets/img/pagos/'+imagen);
 	}
